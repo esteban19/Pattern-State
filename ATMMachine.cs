@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace StatePattern
 {
     /* Context */
-    public class ATMMachine
+    public class ATMMachine : IGetATMData
     {
         ATMState hasCard;
         ATMState noCard;
@@ -79,6 +79,14 @@ namespace StatePattern
         public ATMState getHasPin() { return hasCorrectPin; }
         public ATMState getNoCashState() { return atmOutOfMoney; }
 
+        public ATMState getATMData()
+        {
+            return atmState;
+        }
 
+        public int getCashInMachine()
+        {
+            return CashInMachine;
+        }
     }
 }

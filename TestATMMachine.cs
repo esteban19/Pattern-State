@@ -10,6 +10,7 @@ namespace StatePattern
     {
         public static void Main(string[] args)
         {
+            //State
             ATMMachine atmMachine = new ATMMachine();
             atmMachine.insertCard();
             atmMachine.ejectCard();
@@ -21,6 +22,17 @@ namespace StatePattern
             atmMachine.insertCard();
             Console.WriteLine("------------");
             atmMachine.insertPin(1234);
+
+            //Proxy Pattern
+            IGetATMData atmRealMachine = new ATMMachine();
+            IGetATMData atmProxyMachine = new ATMProxy();
+
+            Console.WriteLine("Current ATMProxy State: " + atmProxyMachine.getATMData());
+            Console.WriteLine("Current ATMProxy Cash: " + atmProxyMachine.getCashInMachine());
+            //->protected now from this//atmProxyMachine.setCashInMachine();
+
+            //Console.WriteLine("Try to set ATMMachine? " + atmRealMachine.setCashInMachine());
+            //also won't work. It's a IGetATMData object so it can't access methods outside of its contract.
         }
     }
 }
